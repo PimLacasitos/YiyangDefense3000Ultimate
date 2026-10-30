@@ -103,6 +103,7 @@ MonoBehaviour:
   damage: 10
   range: 20
   fireRate: 1
+  head: {fileID: 2055021450706010243}
 --- !u!1001 &1949599465469814632
 PrefabInstance:
   m_ObjectHideFlags: 0

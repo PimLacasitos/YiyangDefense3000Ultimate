@@ -1065,7 +1065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 482175521354352819, guid: 61f1703897ae27b4fbb17bf419def7bc, type: 3}
-  spawnRate: 0.912
+  spawnRate: 3
   target: {fileID: 2075215072}
 --- !u!4 &1952651752
 Transform:

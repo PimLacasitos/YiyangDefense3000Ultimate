@@ -7,13 +7,15 @@ public class BasicTurret : MonoBehaviour
     public float fireRate = 1f;
     private float counter = 0f;
 
+    public Transform head;
+    GameObject target = null;
+
     private void Update()
     {
 
         counter -= Time.deltaTime;
         if (counter <= 0f)
         {
-            GameObject target = null;
 
             float minDistance = range;
 
@@ -27,23 +29,29 @@ public class BasicTurret : MonoBehaviour
                     target = enemy;
 
                 }
+            }
+            if (target == null)
+            {
+                return;
+            }
 
-                if (target == null)
+            Vector3 direction = (target.transform.position - transform.position).normalized;
+
+            if (Physics.Raycast(transform.position, direction, out RaycastHit hit, range))
+            {
+                if (hit.transform == target.transform)
                 {
-                    return;
-                }
-
-                Vector3 direction = (target.transform.position - transform.position).normalized;
-
-                if (Physics.Raycast(transform.position, direction, out RaycastHit hit, range))
-                {
-                    if (hit.transform == target.transform)
-                    {
-                        target.GetComponent<Target>().TakeDamage(damage);
-                        counter = fireRate;
-                    }
+                    target.GetComponent<Target>().TakeDamage(damage);
+                    counter = fireRate;
                 }
             }
+
+        }
+
+        if (target != null)
+        {
+            Quaternion rotation = Quaternion.LookRotation(target.transform.position - head.position);
+            head.rotation = Quaternion.Slerp(head.rotation, rotation, 20f * Time.deltaTime);
         }
     }
 
