@@ -9,6 +9,7 @@ TagManager:
   - lb_groundTarget
   - lb_perchTarget
   - MainTower
+  - Enemy
   layers:
   - Default
   - TransparentFX
